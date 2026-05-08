@@ -91,6 +91,11 @@ CMakeLists.txt.user*
 config.ini
 *.log
 
+# Database files
+*.db
+*.db-journal
+*.db-wal
+
 # Python
 __pycache__/
 *.pyo
