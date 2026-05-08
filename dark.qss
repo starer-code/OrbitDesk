@@ -1,0 +1,287 @@
+/* ===== 全局 ===== */
+* {
+    font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Segoe UI", "Noto Sans SC", sans-serif;
+    font-size: 13px;
+}
+
+QWidget {
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+}
+
+/* ===== 标题栏 ===== */
+#titleBar {
+    background-color: #181825;
+}
+
+#titleLabel {
+    color: #cdd6f4;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    background: transparent;
+}
+
+QLabel {
+    border: none;
+    background: transparent;
+}
+
+/* ===== 标题栏按钮 ===== */
+#btnMin, #btnMax, #btnClose {
+    background-color: transparent;
+    color: #cdd6f4;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 4px;
+    padding: 0px;
+}
+
+#btnMin:hover, #btnMax:hover {
+    background-color: #313244;
+}
+
+#btnClose:hover {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+/* ===== 侧边栏 ===== */
+#sidebar {
+    background-color: #181825;
+}
+
+#sidebar QPushButton {
+    background-color: transparent;
+    color: #a6adc8;
+    border: none;
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 14px;
+    min-height: 20px;
+    border-radius: 6px;
+    margin: 2px 8px;
+}
+
+#sidebar QPushButton:hover {
+    background-color: #313244;
+    color: #cdd6f4;
+}
+
+#sidebar QPushButton:checked {
+    background-color: #45475a;
+    color: #cba6f7;
+}
+
+/* ===== 主内容区 ===== */
+#mainContent {
+    background-color: #1e1e2e;
+    border: none;
+}
+
+/* ===== 通用按钮 ===== */
+QPushButton {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #b4befe;
+}
+
+QPushButton:pressed {
+    background-color: #a6adc8;
+}
+
+/* ===== 输入框 ===== */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border: 1px solid #cba6f7;
+}
+
+/* ===== 滚动条 ===== */
+QScrollBar:vertical {
+    background-color: #1e1e2e;
+    width: 8px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #45475a;
+    border-radius: 4px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #585b70;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* ===== 系统监控页面 ===== */
+#monitorHeaderLabel {
+    font-size: 36px;
+    font-weight: bold;
+    color: #cba6f7;
+    padding: 10px;
+}
+
+#monitorInfoCard QLabel {
+    border: none;
+    background: transparent;
+}
+
+/* ===== 任务管理页面 ===== */
+#taskHeaderLabel {
+    font-size: 36px;
+    font-weight: bold;
+    color: #cba6f7;
+    padding: 10px;
+}
+
+#taskFormCard {
+    background-color: #313244;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+#taskTableCard {
+    background-color: #313244;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+#taskListLabel {
+    font-size: 16px;
+    font-weight: bold;
+    color: #cdd6f4;
+    padding: 5px 0;
+}
+
+/* ===== 番茄钟页面 ===== */
+#pomLogCard {
+    background-color: #313244;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#pomLogLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #cdd6f4;
+    padding: 2px 0;
+}
+
+/* ===== 快捷笔记页面 ===== */
+#noteListWidget {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 5px;
+    outline: none;
+}
+
+#noteListWidget::item {
+    padding: 12px;
+    border-radius: 6px;
+    margin: 3px 5px;
+    border: none;
+}
+
+#noteListWidget::item:selected {
+    background-color: #45475a;
+    color: #cba6f7;
+    border-left: 3px solid #cba6f7;
+}
+
+#noteListWidget::item:hover {
+    background-color: #3b3d52;
+}
+
+#noteHeaderLabel {
+    font-size: 36px;
+    font-weight: bold;
+    color: #cba6f7;
+    padding: 10px;
+}
+
+#noteTitleInput, #noteTagsInput {
+    padding: 10px;
+    font-size: 14px;
+}
+
+#noteContentEdit {
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ===== 工作流快捷启动页面 ===== */
+#workflowScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+#workflowContentWidget {
+    background-color: transparent;
+}
+
+#launcherHeaderLabel {
+    font-size: 36px;
+    font-weight: bold;
+    color: #cba6f7;
+    padding: 10px;
+}
+
+#workflowNameInput, #workflowCommandInput, #workflowDescInput {
+    padding: 10px;
+    font-size: 14px;
+}
+
+#workflowBrowseBtn {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #45475a;
+    color: #cdd6f4;
+    border: none;
+    border-radius: 6px;
+}
+
+#workflowBrowseBtn:hover {
+    background-color: #585b70;
+}
+
+#workflowBrowseBtn:pressed {
+    background-color: #313244;
+}
+
+/* 工作流卡片样式 */
+QWidget[workflowId] {
+    background-color: #313244;
+    border-radius: 12px;
+    border: 2px solid #45475a;
+}
+
+QWidget[workflowId]:hover {
+    border-color: #cba6f7;
+    background-color: #3b3d52;
+}

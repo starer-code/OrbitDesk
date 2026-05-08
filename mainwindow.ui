@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>697</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout">
+      <item>
+       <widget class="QWidget" name="titleBar" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="titleBarLayout">
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="titleLabel">
+             <property name="text">
+              <string>OrbitDesk</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnMin">
+             <property name="text">
+              <string>_</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnMax">
+             <property name="text">
+              <string>□</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnClose">
+             <property name="text">
+              <string>×</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="contentLayout" stretch="0,0">
+        <item>
+         <widget class="QWidget" name="sidebar" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPushButton" name="btnNavMonitor">
+             <property name="text">
+              <string>系统监控</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnNavTask">
+             <property name="text">
+              <string>任务管理</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnNavNote">
+             <property name="text">
+              <string>快捷笔记</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnNavPomodoro">
+             <property name="text">
+              <string>番茄钟</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnNavChat">
+             <property name="text">
+              <string>AI对话</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnNavLauncher">
+             <property name="text">
+              <string>快捷启动</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="mainContent">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777210</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="pageMonitor">
+           <layout class="QVBoxLayout" name="monitorMainLayout">
+            <item>
+             <widget class="QWidget" name="monitorWrapper" native="true">
+              <layout class="QVBoxLayout" name="monitorWrapperLayout">
+               <item>
+                <widget class="QLabel" name="monitorHeaderLabel">
+                 <property name="text">
+                  <string>系统监控</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="monitorSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pageNote">
+           <layout class="QVBoxLayout" name="noteMainLayout">
+            <item>
+             <widget class="QWidget" name="noteWrapper" native="true">
+              <layout class="QVBoxLayout" name="noteWrapperLayout">
+               <item>
+                <widget class="QLabel" name="noteHeaderLabel">
+                 <property name="text">
+                  <string>快捷笔记</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="noteSearchLayout">
+                 <item>
+                  <widget class="QLineEdit" name="noteSearchInput">
+                   <property name="placeholderText">
+                    <string>搜索笔记...</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="noteSearchBtn">
+                   <property name="text">
+                    <string>搜索</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="noteAddBtn">
+                   <property name="text">
+                    <string>新建笔记</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="noteContentLayout">
+                 <item>
+                  <widget class="QListWidget" name="noteListWidget">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QWidget" name="noteEditArea" native="true">
+                   <layout class="QVBoxLayout" name="noteEditLayout">
+                    <item>
+                     <widget class="QLineEdit" name="noteTitleInput">
+                      <property name="placeholderText">
+                       <string>笔记标题</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="noteTagsInput">
+                      <property name="placeholderText">
+                       <string>标签（用逗号分隔）</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QTextEdit" name="noteContentEdit">
+                      <property name="placeholderText">
+                       <string>在这里输入笔记内容...</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <layout class="QHBoxLayout" name="noteButtonLayout">
+                      <item>
+                       <widget class="QPushButton" name="noteSaveBtn">
+                        <property name="text">
+                         <string>保存</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="noteDeleteBtn">
+                        <property name="text">
+                         <string>删除</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="notePinBtn">
+                        <property name="text">
+                         <string>置顶</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pagePomodoro">
+           <layout class="QHBoxLayout" name="pomOuterLayout">
+            <item>
+             <spacer name="pomLeftSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QWidget" name="pomWrapper" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>700</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <item>
+                <widget class="QLabel" name="pomStateLabel">
+                 <property name="text">
+                  <string>准备开始</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pomTimeLabel">
+                 <property name="font">
+                  <font>
+                   <family>楷体</family>
+                   <pointsize>48</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>25:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="pomButtonLayout">
+                 <item>
+                  <widget class="QPushButton" name="pomBtnStart">
+                   <property name="text">
+                    <string>开始专注</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pomBtnPause">
+                   <property name="text">
+                    <string>暂停</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="pomBtnReset">
+                   <property name="text">
+                    <string>重置</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="pomStatsLabel">
+                 <property name="font">
+                  <font>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>今日专注：0 次，共 0 分钟</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="pomLogCard" native="true">
+                 <layout class="QVBoxLayout" name="pomLogLayout">
+                  <item>
+                   <widget class="QLabel" name="pomLogLabel">
+                    <property name="text">
+                     <string>今日专注记录</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="pomLogTable"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="pomRightSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pageChat">
+           <layout class="QHBoxLayout" name="chatOuterLayout">
+            <item>
+             <spacer name="chatLeftSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QWidget" name="chatWrapper" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>500</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>800</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <layout class="QHBoxLayout" name="chatHeaderLayout">
+                 <item>
+                  <widget class="QLabel" name="chatHeaderLabel">
+                   <property name="font">
+                    <font>
+                     <pointsize>24</pointsize>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>AI 智能助手</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="chatHeaderSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="chatClearBtn">
+                   <property name="text">
+                    <string>清空对话</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QScrollArea" name="chatScrollArea">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="chatContentWidget"/>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="chatInputLayout">
+                 <item>
+                  <widget class="QLineEdit" name="chatInput">
+                   <property name="placeholderText">
+                    <string>输入消息...</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="chatSendBtn">
+                   <property name="text">
+                    <string>发送</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="chatRightSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pageLauncher">
+           <layout class="QVBoxLayout" name="launcherMainLayout">
+            <item>
+             <widget class="QWidget" name="launcherWrapper" native="true">
+              <layout class="QVBoxLayout" name="launcherWrapperLayout">
+               <item>
+                <widget class="QLabel" name="launcherHeaderLabel">
+                 <property name="text">
+                  <string>工作流快捷启动</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="launcherInputLayout">
+                 <item>
+                  <widget class="QLineEdit" name="workflowNameInput">
+                   <property name="placeholderText">
+                    <string>工作流名称</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="workflowCommandInput">
+                   <property name="placeholderText">
+                    <string>命令或URL</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="workflowBrowseBtn">
+                   <property name="text">
+                    <string>浏览</string>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>60</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="workflowDescInput">
+                   <property name="placeholderText">
+                    <string>描述（可选）</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="workflowAddBtn">
+                   <property name="text">
+                    <string>添加</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QScrollArea" name="workflowScrollArea">
+                 <property name="widgetResizable">
+                  <bool>true</bool>
+                 </property>
+                 <widget class="QWidget" name="workflowContentWidget">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>671</width>
+                    <height>454</height>
+                   </rect>
+                  </property>
+                  <layout class="QGridLayout" name="workflowGridLayout">
+                   <property name="spacing">
+                    <number>15</number>
+                   </property>
+                  </layout>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="pageTask">
+           <layout class="QVBoxLayout" name="taskMainLayout">
+            <item>
+             <widget class="QWidget" name="taskContentWrapper" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLabel" name="taskHeaderLabel">
+                 <property name="text">
+                  <string>任务管理</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="taskFormCard" native="true">
+                 <layout class="QVBoxLayout" name="taskFormLayout">
+                  <item>
+                   <layout class="QGridLayout" name="gridLayout">
+                    <item row="0" column="0">
+                     <widget class="QLabel" name="taskTitleLabel">
+                      <property name="text">
+                       <string>标题</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QComboBox" name="taskPriorityCombo"/>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="taskDueDateLabel">
+                      <property name="text">
+                       <string>截止日期</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="taskPriorityLabel">
+                      <property name="text">
+                       <string>优先级</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="taskCategoryLabel">
+                      <property name="text">
+                       <string>分类</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="0" column="1">
+                     <widget class="QLineEdit" name="taskTitleInput">
+                      <property name="placeholderText">
+                       <string>输入任务标题</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QLineEdit" name="taskCategoryInput">
+                      <property name="placeholderText">
+                       <string>输入分类</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QDateTimeEdit" name="taskDueDate"/>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="taskButtonLayout">
+                    <item>
+                     <widget class="QPushButton" name="btnAddTask">
+                      <property name="text">
+                       <string>添加任务</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btnClearTask">
+                      <property name="text">
+                       <string>清空输入</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="taskTableCard" native="true">
+                 <layout class="QVBoxLayout" name="taskTableLayout">
+                  <item>
+                   <layout class="QHBoxLayout" name="taskTableHeaderLayout">
+                    <item>
+                     <widget class="QLabel" name="taskListLabel">
+                      <property name="text">
+                       <string>任务列表</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <spacer name="taskTableSpacer">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btnDeleteTask">
+                      <property name="text">
+                       <string>删除选中</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QTableWidget" name="taskTable"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>900</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
