@@ -88,6 +88,45 @@ setx ORBITDESK_API_URL "https://your-api-url/v1/chat/completions"
 
 ---
 
+## 快速开始
+
+### 1. 克隆仓库
+
+```bash
+git clone https://github.com/starer-code/OrbitDesk.git
+cd OrbitDesk
+```
+
+### 2. 打开项目
+
+- **Qt Creator**：文件 → 打开文件或项目 → 选择 `CMakeLists.txt`
+- **命令行**：
+  ```bash
+  mkdir build && cd build
+  cmake .. -G "MinGW Makefiles"
+  cmake --build .
+  ```
+
+### 3. 设置环境变量（AI 功能必需）
+
+```powershell
+# Windows PowerShell
+$env:ORBITDESK_API_KEY="your_api_key"
+
+# 或永久设置
+setx ORBITDESK_API_KEY "your_api_key"
+```
+
+> ⚠️ 不设置 API Key 也能运行，但 AI 对话功能不可用
+
+### 4. 运行
+
+- Qt Creator：点击 ▶ 运行按钮
+- 命令行：`./build/OrbitDesk.exe`
+- 双击：`build/OrbitDesk.exe`
+
+---
+
 ## 构建与运行
 
 ### 前置条件
