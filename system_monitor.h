@@ -45,6 +45,7 @@ private:
     QString getOsVersion();
     QString getUptime();
     void saveToDatabase(const SystemStats &stats);
+    void cleanOldData();
 
     // CPU
     ULONGLONG m_prevIdleTime = 0;
@@ -64,6 +65,9 @@ private:
     QString m_cachedHostname;
     QString m_cachedOsVersion;
     bool m_infoCached = false;
+
+    // 数据清理计数
+    int m_saveCount = 0;
 };
 
 #endif // SYSTEM_MONITOR_H

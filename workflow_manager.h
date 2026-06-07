@@ -25,13 +25,11 @@ public:
     bool updateWorkflow(int id, const QString &name, const QString &command, const QString &description = "", const QString &iconPath = "");
     bool deleteWorkflow(int id);
     bool updateSortOrder(int id, int sortOrder);
+    bool swapSortOrder(int id1, int id2);
     Workflow getWorkflow(int id);
     QList<Workflow> getAllWorkflows();
-    bool launchWorkflow(int id);
-    bool launchWorkflowByCommand(const QString &command);
-
-private:
-    void initDatabase();
+    bool launchWorkflow(int id, QString *errorMsg = nullptr);
+    bool launchWorkflowByCommand(const QString &command, QString *errorMsg = nullptr);
 };
 
 #endif // WORKFLOW_MANAGER_H

@@ -4,21 +4,31 @@
 #include <QApplication>
 #include <QIcon>
 #include <QSharedMemory>
-#include <QMessageBox>
+#include <QLocalSocket>
+#include <QLocalServer>
+
+static const char *SERVER_NAME = "OrbitDesk_SingleInstance_IPC";
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    // 单实例检测
-    QSharedMemory sharedMemory("OrbitDesk_SingleInstance");
-    if (!sharedMemory.create(1)) {
-        QMessageBox::information(nullptr, "OrbitDesk",
-            "程序已在运行中，请检查系统托盘区域。");
+    // 尝试连接已运行的实例，让它恢复窗口
+    QLocalSocket socket;
+    socket.connectToServer(SERVER_NAME);
+    if (socket.waitForConnected(500)) {
+        socket.write("show");
+        socket.waitForBytesWritten(500);
+        socket.disconnectFromServer();
         return 0;
     }
 
-    a.setWindowIcon(QIcon(":/icons/app.png"));
+    // 单实例锁
+    QSharedMemory sharedMemory("OrbitDesk_SingleInstance");
+    if (!sharedMemory.create(1)) {
+        return 0;
+    }
+    a.setWindowIcon(QIcon(":/resources/icons/app.png"));
     QFile styleFile(":/dark.qss");
     if (styleFile.open(QFile::ReadOnly | QFile::Text)) {
         QString style = styleFile.readAll();

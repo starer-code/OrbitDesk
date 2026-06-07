@@ -195,4 +195,24 @@ void SystemMonitor::saveToDatabase(const SystemStats &stats)
     if (!q.exec()) {
         qDebug() << "Monitor stats save error:" << q.lastError().text();
     }
+
+    // 每100次保存清理一次旧数据（约每200秒）
+    m_saveCount++;
+    if (m_saveCount >= 100) {
+        m_saveCount = 0;
+        cleanOldData();
+    }
+}
+
+void SystemMonitor::cleanOldData()
+{
+    QSqlDatabase db = DatabaseManager::instance().database();
+    if (!db.isOpen()) return;
+
+    QSqlQuery q(db);
+    // 删除5天前的数据
+    q.prepare("DELETE FROM monitor_stats WHERE recorded_at < datetime('now', '-5 days')");
+    if (!q.exec()) {
+        qDebug() << "Clean old monitor data error:" << q.lastError().text();
+    }
 }

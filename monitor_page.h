@@ -5,6 +5,7 @@
 #include <QLabel>
 #include "circular_progress.h"
 #include "system_monitor.h"
+#include "history_chart.h"
 
 class MonitorPage : public QWidget
 {
@@ -30,6 +31,8 @@ private:
     QLabel *m_hostnameLabel;
     QLabel *m_osLabel;
     QLabel *m_uptimeLabel;
+
+    HistoryChart *m_historyChart;
 
     SystemMonitor *m_monitor;
 };

@@ -35,8 +35,8 @@ public:
     // 获取任务数量
     int taskCount();
 
-private:
-    void ensureTableExists();
+    // 获取某任务的累计专注时长（分钟）
+    int getFocusMinutes(int taskId);
 };
 
 #endif // TASK_MANAGER_H

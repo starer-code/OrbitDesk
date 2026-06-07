@@ -92,6 +92,16 @@ void DatabaseManager::initDatabase()
         ")"
         );
 
+    // AI 对话会话表
+    query.exec(
+        "CREATE TABLE IF NOT EXISTS chat_sessions ("
+        "    id         INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    title      TEXT NOT NULL DEFAULT '新对话',"
+        "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,"
+        "    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP"
+        ")"
+        );
+
     // AI 对话记录表
     query.exec(
         "CREATE TABLE IF NOT EXISTS chat_history ("
@@ -101,6 +111,18 @@ void DatabaseManager::initDatabase()
         "    session_id TEXT,"
         "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
         ")"
+        );
+
+    // 旧数据迁移：为已有 chat_history 记录创建默认会话
+    query.exec(
+        "INSERT INTO chat_sessions (id, title, created_at) "
+        "SELECT 1, '默认对话', MIN(created_at) FROM chat_history "
+        "WHERE session_id NOT IN (SELECT CAST(id AS TEXT) FROM chat_sessions) "
+        "AND EXISTS (SELECT 1 FROM chat_history LIMIT 1)"
+        );
+    query.exec(
+        "UPDATE chat_history SET session_id = '1' "
+        "WHERE session_id NOT IN (SELECT CAST(id AS TEXT) FROM chat_sessions)"
         );
 
     // 用户配置表
@@ -125,8 +147,21 @@ void DatabaseManager::initDatabase()
         ")"
         );
 
-    // 清理 24 小时前的监控记录
-    query.exec("DELETE FROM monitor_stats WHERE recorded_at < datetime('now', '-1 day')");
+    // 工作流表
+    query.exec(
+        "CREATE TABLE IF NOT EXISTS workflows ("
+        "    id         INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "    name       TEXT NOT NULL,"
+        "    description TEXT,"
+        "    command    TEXT NOT NULL,"
+        "    icon_path  TEXT,"
+        "    sort_order INTEGER DEFAULT 0,"
+        "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
+        ")"
+        );
+
+    // 清理 5 天前的监控记录
+    query.exec("DELETE FROM monitor_stats WHERE recorded_at < datetime('now', '-5 days')");
 
     m_initialized = true;
     qDebug() << "All tables created successfully";

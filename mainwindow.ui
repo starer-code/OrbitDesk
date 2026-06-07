@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>697</height>
+    <width>894</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -177,31 +177,7 @@
            <layout class="QVBoxLayout" name="monitorMainLayout">
             <item>
              <widget class="QWidget" name="monitorWrapper" native="true">
-              <layout class="QVBoxLayout" name="monitorWrapperLayout">
-               <item>
-                <widget class="QLabel" name="monitorHeaderLabel">
-                 <property name="text">
-                  <string>系统监控</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignmentFlag::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <spacer name="monitorSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
+              <layout class="QVBoxLayout" name="monitorWrapperLayout"/>
              </widget>
             </item>
            </layout>
@@ -451,7 +427,7 @@
            </layout>
           </widget>
           <widget class="QWidget" name="pageChat">
-           <layout class="QHBoxLayout" name="chatOuterLayout">
+           <layout class="QHBoxLayout" name="chatOuterLayout" stretch="0,1,0">
             <item>
              <spacer name="chatLeftSpacer">
               <property name="orientation">
@@ -459,8 +435,8 @@
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>0</width>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -471,12 +447,6 @@
                <size>
                 <width>500</width>
                 <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>800</width>
-                <height>16777215</height>
                </size>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -522,24 +492,50 @@
                  <property name="widgetResizable">
                   <bool>true</bool>
                  </property>
-                 <widget class="QWidget" name="chatContentWidget"/>
+                 <widget class="QWidget" name="chatContentWidget">
+                  <property name="geometry">
+                   <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>459</width>
+                    <height>16</height>
+                   </rect>
+                  </property>
+                 </widget>
                 </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="chatInputLayout">
+                <layout class="QVBoxLayout" name="chatInputLayout">
                  <item>
-                  <widget class="QLineEdit" name="chatInput">
+                  <widget class="QPlainTextEdit" name="chatInput">
                    <property name="placeholderText">
-                    <string>输入消息...</string>
+                    <string>输入消息... (Enter 发送, Shift+Enter 换行)</string>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>100</height>
+                    </size>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="chatSendBtn">
-                   <property name="text">
-                    <string>发送</string>
-                   </property>
-                  </widget>
+                  <layout class="QHBoxLayout" name="chatBtnLayout">
+                   <item>
+                    <spacer name="chatBtnSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="chatSendBtn">
+                     <property name="text">
+                      <string>发送</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </item>
@@ -553,8 +549,8 @@
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>0</width>
+                <height>0</height>
                </size>
               </property>
              </spacer>
@@ -594,14 +590,14 @@
                  </item>
                  <item>
                   <widget class="QPushButton" name="workflowBrowseBtn">
-                   <property name="text">
-                    <string>浏览</string>
-                   </property>
                    <property name="maximumSize">
                     <size>
                      <width>60</width>
                      <height>16777215</height>
                     </size>
+                   </property>
+                   <property name="text">
+                    <string>浏览</string>
                    </property>
                   </widget>
                  </item>
@@ -631,8 +627,8 @@
                    <rect>
                     <x>0</x>
                     <y>0</y>
-                    <width>671</width>
-                    <height>454</height>
+                    <width>37</width>
+                    <height>22</height>
                    </rect>
                   </property>
                   <layout class="QGridLayout" name="workflowGridLayout">
@@ -797,7 +793,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>894</width>
      <height>25</height>
     </rect>
    </property>

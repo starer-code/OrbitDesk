@@ -111,6 +111,11 @@ void MonitorPage::setupUi()
     cardWrapper->addStretch();
     mainLayout->addLayout(cardWrapper);
 
+    // 历史趋势图
+    m_historyChart = new HistoryChart(this);
+    m_historyChart->setObjectName("historyChart");
+    mainLayout->addWidget(m_historyChart);
+
     mainLayout->addStretch();
 }
 
@@ -130,4 +135,7 @@ void MonitorPage::onStatsUpdated(const SystemStats &stats)
     m_hostnameLabel->setText(stats.hostname);
     m_osLabel->setText(stats.osVersion);
     m_uptimeLabel->setText(stats.uptimeText);
+
+    // 更新历史图表
+    m_historyChart->addDataPoint(stats.cpuPercent, stats.memoryPercent);
 }

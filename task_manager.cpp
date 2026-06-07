@@ -7,32 +7,9 @@
 TaskManager::TaskManager(QObject *parent)
     : QObject(parent)
 {
-    ensureTableExists();
 }
 
-void TaskManager::ensureTableExists()
-{
-    QSqlDatabase db = DatabaseManager::instance().database();
-    if (!db.isOpen()) return;
-
-    QSqlQuery query(db);
-    query.exec(
-        "CREATE TABLE IF NOT EXISTS tasks ("
-        "    id          INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    title       TEXT NOT NULL,"
-        "    description TEXT,"
-        "    priority    TEXT DEFAULT 'medium',"
-        "    category    TEXT,"
-        "    due_date    DATE,"
-        "    is_done     INTEGER DEFAULT 0,"
-        "    created_at  DATETIME DEFAULT CURRENT_TIMESTAMP,"
-        "    updated_at  DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-        );
-}
-
-    bool TaskManager::addTask(const QString &title, const QString &priority, const QDateTime &dueDate, const QString &category)
-
+bool TaskManager::addTask(const QString &title, const QString &priority, const QDateTime &dueDate, const QString &category)
 {
     QSqlDatabase db = DatabaseManager::instance().database();
     if (!db.isOpen()) return false;
@@ -104,8 +81,6 @@ QList<Task> TaskManager::getAllTasks()
         task.priority = query.value(3).toString();
         task.category = query.value(4).toString();
         task.dueDate = QDateTime::fromString(query.value(5).toString(), "yyyy-MM-dd HH:mm");
-
-
         task.isDone = query.value(6).toBool();
         task.createdAt = QDateTime::fromString(query.value(7).toString(), "yyyy-MM-dd HH:mm:ss");
         tasks.append(task);
@@ -116,4 +91,18 @@ QList<Task> TaskManager::getAllTasks()
 int TaskManager::taskCount()
 {
     return getAllTasks().size();
+}
+
+int TaskManager::getFocusMinutes(int taskId)
+{
+    QSqlDatabase db = DatabaseManager::instance().database();
+    if (!db.isOpen()) return 0;
+
+    QSqlQuery query(db);
+    query.prepare("SELECT COALESCE(SUM(duration_min), 0) FROM pomodoro_logs WHERE task_id = ? AND completed = 1");
+    query.addBindValue(taskId);
+    if (query.exec() && query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
 }

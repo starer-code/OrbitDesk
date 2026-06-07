@@ -10,32 +10,13 @@
 WorkflowManager::WorkflowManager(QObject *parent)
     : QObject(parent)
 {
-    initDatabase();
-}
-
-void WorkflowManager::initDatabase()
-{
+    // 检查是否需要添加默认工作流
     QSqlDatabase db = DatabaseManager::instance().database();
     if (!db.isOpen()) return;
 
-    QSqlQuery query(db);
-    query.exec(
-        "CREATE TABLE IF NOT EXISTS workflows ("
-        "    id         INTEGER PRIMARY KEY AUTOINCREMENT,"
-        "    name       TEXT NOT NULL,"
-        "    description TEXT,"
-        "    command    TEXT NOT NULL,"
-        "    icon_path  TEXT,"
-        "    sort_order INTEGER DEFAULT 0,"
-        "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP"
-        ")"
-    );
-
-    // 检查是否需要添加默认工作流
     QSqlQuery countQuery(db);
     countQuery.exec("SELECT COUNT(*) FROM workflows");
     if (countQuery.next() && countQuery.value(0).toInt() == 0) {
-        // 添加默认工作流
         addWorkflow("记事本", "notepad.exe", "打开Windows记事本");
         addWorkflow("计算器", "calc.exe", "打开Windows计算器");
         addWorkflow("画图", "mspaint.exe", "打开Windows画图工具");
@@ -122,6 +103,30 @@ bool WorkflowManager::updateSortOrder(int id, int sortOrder)
     return true;
 }
 
+bool WorkflowManager::swapSortOrder(int id1, int id2)
+{
+    QSqlDatabase db = DatabaseManager::instance().database();
+    if (!db.isOpen()) return false;
+
+    Workflow w1 = getWorkflow(id1);
+    Workflow w2 = getWorkflow(id2);
+    if (w1.id == 0 || w2.id == 0) return false;
+
+    // 交换 sort_order
+    QSqlQuery query(db);
+    query.prepare("UPDATE workflows SET sort_order = ? WHERE id = ?");
+    query.addBindValue(w2.sortOrder);
+    query.addBindValue(w1.id);
+    query.exec();
+
+    query.prepare("UPDATE workflows SET sort_order = ? WHERE id = ?");
+    query.addBindValue(w1.sortOrder);
+    query.addBindValue(w2.id);
+    query.exec();
+
+    return true;
+}
+
 Workflow WorkflowManager::getWorkflow(int id)
 {
     Workflow workflow;
@@ -167,24 +172,34 @@ QList<Workflow> WorkflowManager::getAllWorkflows()
     return workflows;
 }
 
-bool WorkflowManager::launchWorkflow(int id)
+bool WorkflowManager::launchWorkflow(int id, QString *errorMsg)
 {
     Workflow workflow = getWorkflow(id);
-    if (workflow.id == 0) return false;
-    return launchWorkflowByCommand(workflow.command);
+    if (workflow.id == 0) {
+        if (errorMsg) *errorMsg = "工作流不存在";
+        return false;
+    }
+    return launchWorkflowByCommand(workflow.command, errorMsg);
 }
 
-bool WorkflowManager::launchWorkflowByCommand(const QString &command)
+bool WorkflowManager::launchWorkflowByCommand(const QString &command, QString *errorMsg)
 {
-    if (command.isEmpty()) return false;
+    if (command.isEmpty()) {
+        if (errorMsg) *errorMsg = "命令为空";
+        return false;
+    }
 
     // 判断是否为URL
     if (command.startsWith("http://") || command.startsWith("https://") || command.startsWith("www.")) {
         QString url = command;
         if (!url.startsWith("http")) url = "https://" + url;
-        return QDesktopServices::openUrl(QUrl(url));
+        bool ok = QDesktopServices::openUrl(QUrl(url));
+        if (!ok && errorMsg) *errorMsg = "无法打开浏览器";
+        return ok;
     }
 
     // 否则作为命令执行
-    return QProcess::startDetached(command);
+    bool ok = QProcess::startDetached(command);
+    if (!ok && errorMsg) *errorMsg = "无法执行命令: " + command;
+    return ok;
 }

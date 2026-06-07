@@ -54,28 +54,34 @@ QLabel {
 /* ===== 侧边栏 ===== */
 #sidebar {
     background-color: #181825;
+    padding: 8px 0;
 }
 
 #sidebar QPushButton {
     background-color: transparent;
     color: #a6adc8;
     border: none;
+    border-left: 3px solid transparent;
     text-align: left;
-    padding: 14px 16px;
+    padding: 12px 16px;
     font-size: 14px;
-    min-height: 20px;
-    border-radius: 6px;
-    margin: 2px 8px;
+    min-height: 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 2px 0 2px 8px;
+    icon-size: 22px 22px;
 }
 
 #sidebar QPushButton:hover {
     background-color: #313244;
     color: #cdd6f4;
+    border-left: 3px solid #585b70;
 }
 
 #sidebar QPushButton:checked {
-    background-color: #45475a;
+    background-color: #313244;
     color: #cba6f7;
+    border-left: 3px solid #cba6f7;
+    font-weight: bold;
 }
 
 /* ===== 主内容区 ===== */
@@ -137,12 +143,20 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
     height: 0px;
 }
 
-/* ===== 系统监控页面 ===== */
-#monitorHeaderLabel {
-    font-size: 36px;
+/* ===== 通用标题样式 ===== */
+#chatHeaderLabel {
+    font-size: 24px;
     font-weight: bold;
     color: #cba6f7;
-    padding: 10px;
+}
+
+/* ===== 系统监控页面 ===== */
+
+#historyChart {
+    background-color: #1e1e2e;
+    border: 1px solid #45475a;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 #monitorInfoCard QLabel {
@@ -178,6 +192,69 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
 }
 
 /* ===== 番茄钟页面 ===== */
+#pomStateLabel {
+    color: #a6adc8;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#pomLabel {
+    color: #a6adc8;
+    font-size: 13px;
+    background: transparent;
+    border: none;
+}
+
+#pomFocusSpin, #pomRestSpin {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+#pomFocusSpin:focus, #pomRestSpin:focus {
+    border: 1px solid #cba6f7;
+}
+
+#pomFocusSpin::up-button, #pomRestSpin::up-button,
+#pomFocusSpin::down-button, #pomRestSpin::down-button {
+    width: 16px;
+    border: none;
+    background-color: #45475a;
+}
+
+#pomFocusSpin::up-button:hover, #pomRestSpin::up-button:hover,
+#pomFocusSpin::down-button:hover, #pomRestSpin::down-button:hover {
+    background-color: #585b70;
+}
+
+#pomTaskCombo {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+
+#pomTaskCombo:focus {
+    border: 1px solid #cba6f7;
+}
+
+#pomTaskCombo::drop-down {
+    border: none;
+    width: 20px;
+}
+
+#pomTaskCombo QAbstractItemView {
+    background-color: #313244;
+    color: #cdd6f4;
+    selection-background-color: #45475a;
+    border: 1px solid #45475a;
+}
+
 #pomLogCard {
     background-color: #313244;
     border-radius: 8px;
@@ -283,5 +360,82 @@ QWidget[workflowId] {
 
 QWidget[workflowId]:hover {
     border-color: #cba6f7;
+    background-color: #3b3d52;
+}
+
+/* ===== 聊天输入框 ===== */
+#chatInput {
+    background-color: #313244;
+    color: #cdd6f4;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#chatInput:focus {
+    border: 1px solid #cba6f7;
+}
+
+/* ===== 聊天气泡 ===== */
+QTextBrowser {
+    background-color: transparent;
+    border: none;
+    color: #cdd6f4;
+}
+
+/* ===== 聊天会话列表 ===== */
+#chatSessionPanel {
+    background-color: #181825;
+    border-radius: 8px;
+}
+
+#chatSessionLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #cba6f7;
+    padding: 5px;
+}
+
+#chatNewSessionBtn {
+    background-color: #45475a;
+    color: #cdd6f4;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    min-width: 28px;
+    max-width: 28px;
+    min-height: 28px;
+    max-height: 28px;
+    padding: 0;
+}
+
+#chatNewSessionBtn:hover {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+}
+
+#chatSessionList {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    border-radius: 8px;
+    padding: 5px;
+    outline: none;
+}
+
+#chatSessionList::item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin: 3px 5px;
+    border: none;
+}
+
+#chatSessionList::item:selected {
+    background-color: #45475a;
+    color: #cba6f7;
+    border-left: 3px solid #cba6f7;
+}
+
+#chatSessionList::item:hover {
     background-color: #3b3d52;
 }

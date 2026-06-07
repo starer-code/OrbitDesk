@@ -30,10 +30,12 @@ public:
     PomodoroState state() const { return m_state; }
     int remainingSeconds() const { return m_remainingSeconds; }
     int totalSeconds() const { return m_totalSeconds; }
+    int currentTaskId() const { return m_currentTaskId; }
 
     // 配置
     void setFocusDuration(int minutes);
     void setRestDuration(int minutes);
+    void setCurrentTask(int taskId);
 
 signals:
     void stateChanged(PomodoroState state);
@@ -47,10 +49,12 @@ private slots:
 private:
     QTimer *m_timer;
     PomodoroState m_state;
+    PomodoroState m_stateBeforePause;  // 暂停前的状态
     int m_remainingSeconds;
     int m_totalSeconds;
     int m_focusMinutes;
     int m_restMinutes;
+    int m_currentTaskId = -1;
 };
 
 #endif // POMODORO_MANAGER_H

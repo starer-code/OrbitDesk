@@ -28,9 +28,6 @@ public:
     Note getNote(int id);
     QList<Note> getAllNotes();
     QList<Note> searchNotes(const QString &keyword);
-
-private:
-    void initDatabase();
 };
 
 #endif // NOTE_MANAGER_H
